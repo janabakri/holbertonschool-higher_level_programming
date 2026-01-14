@@ -17,4 +17,3 @@ else:
         f"Last digit of {number} is {last_digit} "
         "and is less than 6 and not 0"
     )
-
