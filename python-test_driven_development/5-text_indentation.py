@@ -15,30 +15,22 @@ def text_indentation(text):
         raise TypeError("text must be a string")
     
     if not text:
-        print("", end="")
         return
     
-    # Process the text
-    result = ""
     i = 0
-    length = len(text)
+    n = len(text)
     
-    # Skip leading spaces
-    while i < length and text[i] == ' ':
+    while i < n and text[i] == ' ':
         i += 1
     
-    while i < length:
-        result += text[i]
+    while i < n:
+        print(text[i], end="")
         
         if text[i] in ".?:":
-            result += "\n\n"
+            print("\n")
             i += 1
-            # Skip spaces after punctuation
-            while i < length and text[i] == ' ':
+            while i < n and text[i] == ' ':
                 i += 1
             continue
         
         i += 1
-    
-    # Print without trailing newline
-    print(result.rstrip(), end="")
