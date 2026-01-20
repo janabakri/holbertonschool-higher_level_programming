@@ -36,28 +36,28 @@ def matrix_divided(matrix, div):
             raise TypeError(
                 "matrix must be a matrix (list of lists) of integers/floats"
             )
-        
+
         # Check if all elements are integers or floats
         for element in row:
             if not isinstance(element, (int, float)):
                 raise TypeError(
                     "matrix must be a matrix (list of lists) of integers/floats"
                 )
-        
+
         # Check if all rows have same size
         if row_length is None:
             row_length = len(row)
         elif len(row) != row_length:
             raise TypeError("Each row of the matrix must have the same size")
-    
+
     # Check if div is a number
     if not isinstance(div, (int, float)):
         raise TypeError("div must be a number")
-    
+
     # Check if div is zero
     if div == 0:
         raise ZeroDivisionError("division by zero")
-    
+
     # Divide all elements and round to 2 decimal places
     new_matrix = []
     for row in matrix:
@@ -71,5 +71,5 @@ def matrix_divided(matrix, div):
                 rounded = 0.0
             new_row.append(rounded)
         new_matrix.append(new_row)
-    
+
     return new_matrix
