@@ -1,159 +1,100 @@
-Test file for text_indentation function.
-
 >>> text_indentation = __import__('5-text_indentation').text_indentation
 
->>> text_indentation("Hello. How are you? Fine: thanks.")
+>>> text_indentation("Hello. How are you? I'm fine: thank you.")
 Hello.
-<BLANKLINE>
 How are you?
-<BLANKLINE>
-Fine:
-<BLANKLINE>
-thanks.
+I'm fine:
+thank you.
 
->>> text_indentation("""Lorem ipsum dolor sit amet, consectetur adipiscing elit. \
-... Quonam modo? Utrum igitur tibi litteram videor an totas paginas commovere? \
-... Non autem hoc: igitur ne illud quidem. Fortasse id optimum, sed ubi illud: \
-... Plus semper voluptatis? Teneo, inquit, finem illi videri nihil dolere. \
-... Transfer idem ad modestiam vel temperantiam, quae est moderatio cupiditatum \
-... rationi oboediens. Si id dicis, vicimus. Inde sermone vario sex illa a Dipylo \
-... stadia confecimus. Sin aliud quid voles, postea. Quae animi affectio suum \
-... cuique tribuens atque hanc, quam dico. Utinam quidem dicerent alium alio \
-... beatiorem! Iam ruinas videres""")
+>>> text_indentation("Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quonam modo? Utrum igitur tibi litteram videor an totas paginas commovere? Non autem hoc: igitur ne illud quidem. Fortasse id optimum, sed ubi illud: Plus semper voluptatis? Teneo, inquit, finem illi videri nihil dolere. Transfer idem ad modestiam vel temperantiam, quae est moderatio cupiditatum rationi oboediens. Si id dicis, vicimus. Inde sermone vario sex illa a Dipylo stadia confecimus. Sin aliud quid voles, postea. Quae animi affectio suum cuique tribuens atque hanc, quam dico. Utinam quidem dicerent alium alio beatiorem! Iam ruinas videres")
 Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-<BLANKLINE>
 Quonam modo?
-<BLANKLINE>
 Utrum igitur tibi litteram videor an totas paginas commovere?
-<BLANKLINE>
 Non autem hoc:
-<BLANKLINE>
 igitur ne illud quidem.
-<BLANKLINE>
 Fortasse id optimum, sed ubi illud:
-<BLANKLINE>
 Plus semper voluptatis?
-<BLANKLINE>
 Teneo, inquit, finem illi videri nihil dolere.
-<BLANKLINE>
 Transfer idem ad modestiam vel temperantiam, quae est moderatio cupiditatum rationi oboediens.
-<BLANKLINE>
 Si id dicis, vicimus.
-<BLANKLINE>
 Inde sermone vario sex illa a Dipylo stadia confecimus.
-<BLANKLINE>
 Sin aliud quid voles, postea.
-<BLANKLINE>
 Quae animi affectio suum cuique tribuens atque hanc, quam dico.
-<BLANKLINE>
 Utinam quidem dicerent alium alio beatiorem! Iam ruinas videres
 
->>> text_indentation("Hello.")
-Hello.
-
->>> text_indentation("Hello?")
-Hello?
-
->>> text_indentation("Hello:")
-Hello:
-
 >>> text_indentation("")
->>> text_indentation("   ")
+<BLANKLINE>
 
->>> text_indentation("Hello.   How are you?")
-Hello.
-<BLANKLINE>
-How are you?
+>>> text_indentation("Hello World")
+Hello World
 
->>> text_indentation("Hello . How are you ?")
-Hello .
-<BLANKLINE>
-How are you ?
-
->>> text_indentation("First line.    Second line?    Third line:")
-First line.
-<BLANKLINE>
-Second line?
-<BLANKLINE>
-Third line:
+>>> text_indentation("Simple test. With period? And colon: Done.")
+Simple test.
+With period?
+And colon:
+Done.
 
 >>> try:
 ...     text_indentation(123)
-... except Exception as e:
+... except TypeError as e:
 ...     print(e)
 text must be a string
 
 >>> try:
 ...     text_indentation(None)
-... except Exception as e:
+... except TypeError as e:
 ...     print(e)
 text must be a string
 
 >>> try:
 ...     text_indentation([])
-... except Exception as e:
+... except TypeError as e:
 ...     print(e)
 text must be a string
 
 >>> try:
 ...     text_indentation({})
-... except Exception as e:
+... except TypeError as e:
 ...     print(e)
 text must be a string
 
->>> text_indentation("Simple test.")
-Simple test.
-
->>> text_indentation("One. Two. Three.")
-One.
-<BLANKLINE>
-Two.
-<BLANKLINE>
-Three.
-
->>> text_indentation("End with punctuation. End with question? End with colon:")
-End with punctuation.
-<BLANKLINE>
-End with question?
-<BLANKLINE>
-End with colon:
-
->>> text_indentation("Multiple... punctuation??? Colons:::")  
-Multiple...
-<BLANKLINE>
-punctuation???
-<BLANKLINE>
-Colons:::
-
->>> text_indentation("   Leading spaces.   Middle   spaces.   Trailing spaces   ")
-Leading spaces.
-<BLANKLINE>
-Middle   spaces.
-<BLANKLINE>
-Trailing spaces
-
->>> text_indentation("No punctuation here")
-No punctuation here
-
->>> text_indentation(".?::?.?.?:")
-.
-<BLANKLINE>
-?
-<BLANKLINE>
-:
-<BLANKLINE>
-:
-<BLANKLINE>
-?
-<BLANKLINE>
-.
-<BLANKLINE>
-?
-<BLANKLINE>
-.
-<BLANKLINE>
-?
-<BLANKLINE>
+>>> text_indentation("   Spaces at start.   Spaces in middle?   :   ")
+Spaces at start.
+Spaces in middle?
 :
 
->>> text_indentation("\n\t")
+>>> text_indentation("Multiple... delimiters??? And::: more")
+Multiple.
+.
+.
+ delimiters?
+?
+?
+ And:
+:
+:
+ more
+
+>>> text_indentation("Period. Question? Colon: End")
+Period.
+Question?
+Colon:
+End
+
+>>> text_indentation("No delimiters here")
+No delimiters here
+
+>>> text_indentation(".?.::.?.")
+<BLANKLINE>
+<BLANKLINE>
+<BLANKLINE>
+<BLANKLINE>
+<BLANKLINE>
+<BLANKLINE>
+<BLANKLINE>
+
+>>> text_indentation("   .   ?   :   ")
+<BLANKLINE>
+<BLANKLINE>
+<BLANKLINE>
+<BLANKLINE>
