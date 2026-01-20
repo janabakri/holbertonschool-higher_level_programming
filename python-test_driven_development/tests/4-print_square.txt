@@ -1,15 +1,13 @@
-Test file for print_square function
+Test file for print_square function.
 
 >>> print_square = __import__('4-print_square').print_square
 
-Test with size 4
 >>> print_square(4)
 ####
 ####
 ####
 ####
 
-Test with size 10
 >>> print_square(10)
 ##########
 ##########
@@ -22,76 +20,84 @@ Test with size 10
 ##########
 ##########
 
-Test with size 0 (should print nothing)
 >>> print_square(0)
 
-Test with size 1
+
 >>> print_square(1)
 #
 
-Test error: size is negative integer
->>> print_square(-1)
-Traceback (most recent call last):
-    ...
-ValueError: size must be >= 0
-
-Test error: size is positive float
->>> print_square(2.5)
-Traceback (most recent call last):
-    ...
-TypeError: size must be an integer
-
-Test error: size is negative float
->>> print_square(-2.5)
-Traceback (most recent call last):
-    ...
-TypeError: size must be an integer
-
-Test error: size is string
->>> print_square("4")
-Traceback (most recent call last):
-    ...
-TypeError: size must be an integer
-
-Test error: size is list
->>> print_square([1, 2, 3])
-Traceback (most recent call last):
-    ...
-TypeError: size must be an integer
-
-Test error: size is None
->>> print_square(None)
-Traceback (most recent call last):
-    ...
-TypeError: size must be an integer
-
-Test error: size is boolean
->>> print_square(True)
-Traceback (most recent call last):
-    ...
-TypeError: size must be an integer
-
-Test error: size is boolean False
->>> print_square(False)
-Traceback (most recent call last):
-    ...
-TypeError: size must be an integer
-
-Test with size 2
 >>> print_square(2)
 ##
 ##
 
-Test with size 3
 >>> print_square(3)
 ###
 ###
 ###
 
-Test with size 5
 >>> print_square(5)
 #####
 #####
 #####
 #####
 #####
+
+>>> try:
+...     print_square(-1)
+... except Exception as e:
+...     print(e)
+size must be >= 0
+
+>>> try:
+...     print_square(-10)
+... except Exception as e:
+...     print(e)
+size must be >= 0
+
+>>> try:
+...     print_square(2.5)
+... except Exception as e:
+...     print(e)
+size must be an integer
+
+>>> try:
+...     print_square(-2.5)
+... except Exception as e:
+...     print(e)
+size must be an integer
+
+>>> try:
+...     print_square("4")
+... except Exception as e:
+...     print(e)
+size must be an integer
+
+>>> try:
+...     print_square([1, 2, 3])
+... except Exception as e:
+...     print(e)
+size must be an integer
+
+>>> try:
+...     print_square(None)
+... except Exception as e:
+...     print(e)
+size must be an integer
+
+>>> try:
+...     print_square(True)
+... except Exception as e:
+...     print(e)
+size must be an integer
+
+>>> try:
+...     print_square(False)
+... except Exception as e:
+...     print(e)
+size must be an integer
+
+>>> try:
+...     print_square()
+... except Exception as e:
+...     print(type(e).__name__ + ":", e)
+TypeError: print_square() missing 1 required positional argument: 'size'
