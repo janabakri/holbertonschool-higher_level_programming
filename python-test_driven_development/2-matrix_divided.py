@@ -65,7 +65,11 @@ def matrix_divided(matrix, div):
         for element in row:
             result = element / div
             # Round to 2 decimal places
-            new_row.append(round(result, 2))
+            rounded = round(result, 2)
+            # Handle special case for infinity and -0.0
+            if rounded == -0.0:
+                rounded = 0.0
+            new_row.append(rounded)
         new_matrix.append(new_row)
     
     return new_matrix
