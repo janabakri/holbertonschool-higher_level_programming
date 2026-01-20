@@ -1,72 +1,52 @@
-Test file for say_my_name function.
+The ``3-say_my_name`` module
 
->>> say_my_name = __import__('3-say_my_name').say_my_name
+Using ``say_my_name``
 
->>> say_my_name("John", "Smith")
-My name is John Smith
+Importing function from the module:
 
->>> say_my_name("Walter", "White")
-My name is Walter White
+    >>> say_my_name = __import__('3-say_my_name').say_my_name
 
->>> say_my_name("Bob")
-My name is Bob
+Passing first_name and last_name correctly
 
->>> say_my_name("Bob", "")
-My name is Bob
+    >>> say_my_name("Betty", "Holberton")
+    My name is Betty Holberton
 
->>> say_my_name("", "")
-My name is 
+Passing first_name and last_name correctly 2
 
->>> say_my_name("", "Smith")
-My name is  Smith
+    >>> say_my_name("Luis")
+    My name is Luis 
 
->>> say_my_name("Alice", "")
-My name is Alice
+Passing None as the last_name
 
->>> say_my_name("", "Doe")
-My name is  Doe
+    >>> say_my_name("John", None)
+    Traceback (most recent call last):
+    	      ...
+    TypeError: last_name must be a string
 
->>> say_my_name("   ", "   ")
-My name is    
+Passing None as the first_name
 
->>> try:
-...     say_my_name(12, "White")
-... except Exception as e:
-...     print(e)
-first_name must be a string
+    >>> say_my_name(None)
+    Traceback (most recent call last):
+    	      ...
+    TypeError: first_name must be a string
 
->>> try:
-...     say_my_name("John", 42)
-... except Exception as e:
-...     print(e)
-last_name must be a string
+Passing a number as the first_name
 
->>> try:
-...     say_my_name(12, 42)
-... except Exception as e:
-...     print(e)
-first_name must be a string
+    >>> say_my_name(1)
+    Traceback (most recent call last):
+    	      ...
+    TypeError: first_name must be a string
 
->>> try:
-...     say_my_name(None, "Smith")
-... except Exception as e:
-...     print(e)
-first_name must be a string
+Passing a number as the last_name
 
->>> try:
-...     say_my_name("John", None)
-... except Exception as e:
-...     print(e)
-last_name must be a string
+    >>> say_my_name("Betty", 0)
+    Traceback (most recent call last):
+    	      ...
+    TypeError: last_name must be a string
 
->>> try:
-...     say_my_name([1, 2, 3], "Smith")
-... except Exception as e:
-...     print(e)
-first_name must be a string
+Missing two arguments
 
->>> try:
-...     say_my_name("John", {"key": "value"})
-... except Exception as e:
-...     print(e)
-last_name must be a string
+    >>> say_my_name()
+    Traceback (most recent call last):
+    	      ...
+    TypeError: say_my_name() missing 1 required positional argument: 'first_name'
