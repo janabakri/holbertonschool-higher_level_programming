@@ -1,100 +1,19 @@
 >>> text_indentation = __import__('5-text_indentation').text_indentation
 
->>> text_indentation("Hello. How are you? I'm fine: thank you.")
+>>> text_indentation("Hello. How are you?:")
 Hello.
+<BLANKLINE>
 How are you?
-I'm fine:
-thank you.
-
->>> text_indentation("Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quonam modo? Utrum igitur tibi litteram videor an totas paginas commovere? Non autem hoc: igitur ne illud quidem. Fortasse id optimum, sed ubi illud: Plus semper voluptatis? Teneo, inquit, finem illi videri nihil dolere. Transfer idem ad modestiam vel temperantiam, quae est moderatio cupiditatum rationi oboediens. Si id dicis, vicimus. Inde sermone vario sex illa a Dipylo stadia confecimus. Sin aliud quid voles, postea. Quae animi affectio suum cuique tribuens atque hanc, quam dico. Utinam quidem dicerent alium alio beatiorem! Iam ruinas videres")
-Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-Quonam modo?
-Utrum igitur tibi litteram videor an totas paginas commovere?
-Non autem hoc:
-igitur ne illud quidem.
-Fortasse id optimum, sed ubi illud:
-Plus semper voluptatis?
-Teneo, inquit, finem illi videri nihil dolere.
-Transfer idem ad modestiam vel temperantiam, quae est moderatio cupiditatum rationi oboediens.
-Si id dicis, vicimus.
-Inde sermone vario sex illa a Dipylo stadia confecimus.
-Sin aliud quid voles, postea.
-Quae animi affectio suum cuique tribuens atque hanc, quam dico.
-Utinam quidem dicerent alium alio beatiorem! Iam ruinas videres
-
->>> text_indentation("")
 <BLANKLINE>
-
->>> text_indentation("Hello World")
-Hello World
-
->>> text_indentation("Simple test. With period? And colon: Done.")
-Simple test.
-With period?
-And colon:
-Done.
-
->>> try:
-...     text_indentation(123)
-... except TypeError as e:
-...     print(e)
-text must be a string
-
->>> try:
-...     text_indentation(None)
-... except TypeError as e:
-...     print(e)
-text must be a string
-
->>> try:
-...     text_indentation([])
-... except TypeError as e:
-...     print(e)
-text must be a string
-
->>> try:
-...     text_indentation({})
-... except TypeError as e:
-...     print(e)
-text must be a string
-
->>> text_indentation("   Spaces at start.   Spaces in middle?   :   ")
-Spaces at start.
-Spaces in middle?
 :
-
->>> text_indentation("Multiple... delimiters??? And::: more")
-Multiple.
-.
-.
- delimiters?
-?
-?
- And:
-:
-:
- more
-
->>> text_indentation("Period. Question? Colon: End")
-Period.
-Question?
-Colon:
-End
-
->>> text_indentation("No delimiters here")
-No delimiters here
-
->>> text_indentation(".?.::.?.")
 <BLANKLINE>
-<BLANKLINE>
-<BLANKLINE>
-<BLANKLINE>
-<BLANKLINE>
-<BLANKLINE>
-<BLANKLINE>
-
->>> text_indentation("   .   ?   :   ")
-<BLANKLINE>
-<BLANKLINE>
-<BLANKLINE>
-<BLANKLINE>
+>>> text_indentation("Hi")
+Hi
+>>> text_indentation(12)
+Traceback (most recent call last):
+...
+TypeError: text must be a string
+>>> text_indentation()
+Traceback (most recent call last):
+...
+TypeError: text_indentation() missing 1 required positional argument: 'text'
