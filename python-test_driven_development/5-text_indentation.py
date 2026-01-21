@@ -1,43 +1,34 @@
 #!/usr/bin/python3
 """
-Module: 5-text_indentation
-
-Contains function: text_indentation(text)
-Prints a text with 2 new lines after each of these characters: ., ? and :
+Module for text indentation
 """
 
 
 def text_indentation(text):
-    """Prints a text with 2 new lines after each ., ? and :
-    Args:
-        text: The text to process (must be a string)
-
-    Returns:
-        None
-
-    Raises:
-        TypeError: If text is not a string
+    """
+    Prints a text with 2 new lines after each of these characters: ., ? and :
     """
     if not isinstance(text, str):
         raise TypeError("text must be a string")
-
-    result = ""
+    
+    # Flag to skip spaces at the beginning of a new line
+    skip_spaces = False
     i = 0
-    length = len(text)
-
-    while i < length:
-        result += text[i]
-
+    
+    while i < len(text):
+        # Print current character
+        print(text[i], end='')
+        
+        # If we encounter .?:, print two new lines
         if text[i] in ".?:":
-            result += "\n\n"
-
-            i += 1
-            while i < length and text[i] == ' ':
-                i += 1
-            continue
-
+            print("\n")
+            skip_spaces = True
+        
+        # Move to next character
         i += 1
-
-    lines = result.split('\n')
-    for j, line in enumerate(lines):
-        print(line.strip(), end='' if j == len(lines) - 1 else '\n')
+        
+        # Skip spaces at the beginning of a new line
+        if skip_spaces and i < len(text) and text[i] == ' ':
+            while i < len(text) and text[i] == ' ':
+                i += 1
+            skip_spaces = False
