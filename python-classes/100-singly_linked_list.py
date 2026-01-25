@@ -90,7 +90,7 @@ class SinglyLinkedList:
         new_node = Node(value)
 
         # If list is empty or new value should be at the beginning
-        if self.__head is None or self.__head.data >= value:
+        if self.__head is None or value < self.__head.data:
             new_node.next_node = self.__head
             self.__head = new_node
             return
