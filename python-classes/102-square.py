@@ -79,7 +79,7 @@ class Square:
         """
         if not isinstance(other, Square):
             return NotImplemented
-        return self.area() != other.area()
+        return not self.__eq__(other)  # استخدام not مع __eq__
 
     def __lt__(self, other):
         """Defines the < comparison operator based on area.
