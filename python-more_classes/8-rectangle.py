@@ -4,7 +4,6 @@
 
 class Rectangle:
     """Represents a rectangle with width and height attributes."""
-
     number_of_instances = 0
     print_symbol = "#"
 
@@ -56,10 +55,7 @@ class Rectangle:
         """Returns string representation of rectangle with print_symbol."""
         if self.__width == 0 or self.__height == 0:
             return ""
-
-        # Get the print_symbol, checking instance attribute first, then class
         symbol = getattr(self, 'print_symbol', Rectangle.print_symbol)
-
         rectangle_str = ""
         for i in range(self.__height):
             rectangle_str += str(symbol) * self.__width
@@ -78,23 +74,11 @@ class Rectangle:
 
     @staticmethod
     def bigger_or_equal(rect_1, rect_2):
-        """Returns the biggest rectangle based on area.
-        
-        Args:
-            rect_1: First rectangle to compare
-            rect_2: Second rectangle to compare
-            
-        Returns:
-            The rectangle with the larger area, or rect_1 if equal
-            
-        Raises:
-            TypeError: If either argument is not a Rectangle instance
-        """
+        """Returns the biggest rectangle based on area."""
         if not isinstance(rect_1, Rectangle):
             raise TypeError("rect_1 must be an instance of Rectangle")
         if not isinstance(rect_2, Rectangle):
             raise TypeError("rect_2 must be an instance of Rectangle")
-        
         if rect_1.area() >= rect_2.area():
             return rect_1
         return rect_2
