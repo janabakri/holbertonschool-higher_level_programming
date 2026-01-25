@@ -59,7 +59,7 @@ class Rectangle:
 
         # Get the print_symbol, checking instance attribute first, then class
         symbol = getattr(self, 'print_symbol', Rectangle.print_symbol)
-        
+
         rectangle_str = ""
         for i in range(self.__height):
             rectangle_str += str(symbol) * self.__width
