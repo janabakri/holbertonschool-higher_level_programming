@@ -1,7 +1,15 @@
 #!/usr/bin/python3
-lookup = __import__('0-lookup').lookup
+"""Module for looking up attributes and methods of an object."""
 
-# Test with various objects
-print(lookup(object()))
-print(lookup([]))
-print(lookup({}))
+
+def lookup(obj):
+    """
+    Return a list of available attributes and methods of an object.
+    
+    Args:
+        obj: Any Python object
+    
+    Returns:
+        list: A list of strings representing the attributes and methods
+    """
+    return dir(obj)
