@@ -1,15 +1,7 @@
 #!/usr/bin/python3
-"""Module for looking up attributes and methods of an object."""
+lookup = __import__('0-lookup').lookup
 
-
-def lookup(obj):
-    """
-    Return a list of available attributes and methods of an object.
-    
-    Args:
-        obj: Any Python object
-    
-    Returns:
-        list: A list of strings representing the attributes and methods
-    """
-    return dir(obj)
+# Test with various objects
+print(lookup(object()))
+print(lookup([]))
+print(lookup({}))
