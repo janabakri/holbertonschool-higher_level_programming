@@ -1,6 +1,7 @@
 #!/usr/bin/python3
 """
-Module for defining a Student class with filtered JSON serialization capability.
+Module for defining a Student class with
+filtered JSON serialization capability.
 """
 
 
@@ -39,12 +40,5 @@ class Student:
             dict: Dictionary representation of the student.
         """
         if attrs is None:
-            # Return all attributes
             return self.__dict__
-        else:
-            # Return only specified attributes that exist
-            result = {}
-            for attr in attrs:
-                if hasattr(self, attr):
-                    result[attr] = getattr(self, attr)
-            return result
+        return {attr: getattr(self, attr) for attr in attrs if hasattr(self, attr)}
