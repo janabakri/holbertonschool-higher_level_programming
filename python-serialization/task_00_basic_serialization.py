@@ -96,22 +96,22 @@ if __name__ == "__main__":
     # Test serialization
     try:
         serialize_and_save_to_file(test_data, 'test_data.json')
-        print("✅ Data serialized and saved to 'test_data.json'")
+        print("Data serialized and saved to 'test_data.json'")
     except Exception as e:
-        print(f"❌ Serialization failed: {e}")
+        print(f"Serialization failed: {e}")
     
     # Test deserialization
     try:
         loaded_data = load_and_deserialize('test_data.json')
-        print("\n✅ Data loaded and deserialized successfully!")
-        print("\n📋 Deserialized Data:")
+        print("\nData loaded and deserialized successfully!")
+        print("\nDeserialized Data:")
         print(json.dumps(loaded_data, indent=2, ensure_ascii=False))
         
         # Verify data integrity
         if loaded_data == test_data:
-            print("\n✅ Data integrity verified: Original and loaded data are identical!")
+            print("\nData integrity verified: Original and loaded data are identical!")
         else:
-            print("\n❌ Warning: Original and loaded data are different!")
+            print("\nWarning: Original and loaded data are different!")
     
     except Exception as e:
-        print(f"❌ Deserialization failed: {e}")
+        print(f"Deserialization failed: {e}")   
