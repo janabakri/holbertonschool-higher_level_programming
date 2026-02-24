@@ -6,23 +6,19 @@ Script that lists all states from the database hbtn_0e_0_usa
 import MySQLdb
 import sys
 
-
-def list_states():
-    """
-    Connects to MySQL database and lists all states in ascending order by id
-    """
+if __name__ == "__main__":
     # Get command line arguments
-    username = sys.argv[1]
-    password = sys.argv[2]
-    database = sys.argv[3]
+    mysql_username = sys.argv[1]
+    mysql_password = sys.argv[2]
+    database_name = sys.argv[3]
 
     # Connect to MySQL server
     db = MySQLdb.connect(
         host="localhost",
         port=3306,
-        user=username,
-        passwd=password,
-        db=database
+        user=mysql_username,
+        passwd=mysql_password,
+        db=database_name
     )
 
     # Create a cursor object
@@ -41,7 +37,3 @@ def list_states():
     # Close cursor and database connection
     cursor.close()
     db.close()
-
-
-if __name__ == "__main__":
-    list_states()
