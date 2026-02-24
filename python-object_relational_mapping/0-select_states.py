@@ -1,4 +1,4 @@
-#!/usr/bin/python3
+ #!/usr/bin/python3
 """
 Lists all states from the database hbtn_0e_0_usa.
 Takes 3 arguments: mysql username, mysql password and database name.
@@ -22,11 +22,10 @@ if __name__ == "__main__":
     )
 
     cursor = db.cursor()
-    cursor.execute("SELECT * FROM states ORDER BY id ASC")
+    cursor.execute("SELECT * FROM states ORDER BY states.id ASC")
 
-    states = cursor.fetchall()
-    for state in states:
-        print(state)
+    for row in cursor.fetchall():
+        print(row)
 
     cursor.close()
     db.close()
