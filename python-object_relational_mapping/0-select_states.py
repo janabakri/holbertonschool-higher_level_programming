@@ -1,15 +1,16 @@
 #!/usr/bin/python3
 """
-Lists all states from the database hbtn_0e_0_usa
-Arguments: mysql username, mysql password, database name
-Results sorted in ascending order by states.id
+Script that lists all states from the database hbtn_0e_0_usa
 """
 
 import MySQLdb
 import sys
 
 
-if __name__ == "__main__":
+def list_states():
+    """
+    Connects to MySQL database and lists all states in ascending order by id
+    """
     # Get command line arguments
     username = sys.argv[1]
     password = sys.argv[2]
@@ -21,19 +22,26 @@ if __name__ == "__main__":
         port=3306,
         user=username,
         passwd=password,
-        db=database,
-        charset="utf8"
+        db=database
     )
 
-    # Create cursor and execute query
-    cur = db.cursor()
-    cur.execute("SELECT * FROM states ORDER BY id ASC")
+    # Create a cursor object
+    cursor = db.cursor()
 
-    # Fetch and print results
-    rows = cur.fetchall()
-    for row in rows:
+    # Execute SQL query
+    cursor.execute("SELECT * FROM states ORDER BY id ASC")
+
+    # Fetch all results
+    results = cursor.fetchall()
+
+    # Display results
+    for row in results:
         print(row)
 
     # Close cursor and database connection
-    cur.close()
+    cursor.close()
     db.close()
+
+
+if __name__ == "__main__":
+    list_states()
