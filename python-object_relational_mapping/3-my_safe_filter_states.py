@@ -1,7 +1,7 @@
 #!/usr/bin/python3
 """
-Displays all values in the states table of a given database
-where name matches the provided argument (safe from SQL injection).
+Script that lists all states with a name matching the argument
+from the database hbtn_0e_0_usa (safe from SQL injection).
 """
 
 import sys
@@ -9,28 +9,20 @@ import MySQLdb
 
 
 def main():
-    """
-    Connects to a MySQL database and prints states
-    matching the provided name argument.
-    """
-    username = sys.argv[1]
-    password = sys.argv[2]
-    database = sys.argv[3]
-    state_name = sys.argv[4]
-
+    """Connect to MySQL database and query states safely."""
     db = MySQLdb.connect(
         host="localhost",
         port=3306,
-        user=username,
-        passwd=password,
-        db=database,
+        user=sys.argv[1],
+        passwd=sys.argv[2],
+        db=sys.argv[3],
         charset="utf8"
     )
 
     cursor = db.cursor()
 
     query = "SELECT * FROM states WHERE name = %s ORDER BY id ASC"
-    cursor.execute(query, (state_name,))
+    cursor.execute(query, (sys.argv[4],))
 
     rows = cursor.fetchall()
 
