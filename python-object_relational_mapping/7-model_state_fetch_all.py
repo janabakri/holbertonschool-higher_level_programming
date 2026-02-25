@@ -1,50 +1,20 @@
 #!/usr/bin/python3
-"""
-Lists all State objects from the database hbtn_0e_6_usa
-
-This script connects to a MySQL database using SQLAlchemy,
-retrieves all State objects from the database,
-and displays them sorted by id in ascending order.
-
-Usage:
-    ./7-model_state_fetch_all.py <mysql username> <mysql password> <database name>
-
-Example:
-    ./7-model_state_fetch_all.py root root hbtn_0e_6_usa
-"""
-
+"""Script that lists all State objects from the database hbtn_0e_6_usa"""
 import sys
 from sqlalchemy import create_engine
-from sqlalchemy.orm import sessionmaker
+from sqlalchemy.orm import Session
 from model_state import Base, State
 
 
 if __name__ == "__main__":
-    # Get MySQL credentials from command line arguments
-    mysql_username = sys.argv[1]
-    mysql_password = sys.argv[2]
-    database_name = sys.argv[3]
-
-    # Create engine to connect to MySQL server
     engine = create_engine(
-        'mysql+mysqldb://{}:{}@localhost:3306/{}'.format(
-            mysql_username, mysql_password, database_name
+        'mysql+mysqldb://{}:{}@localhost/{}'.format(
+            sys.argv[1], sys.argv[2], sys.argv[3]
         ),
         pool_pre_ping=True
     )
-
-    # Create a configured "Session" class
-    Session = sessionmaker(bind=engine)
-
-    # Create a Session instance
-    session = Session()
-
-    # Query all State objects sorted by id in ascending order
-    states = session.query(State).order_by(State.id).all()
-
-    # Display results in the required format
-    for state in states:
+    Base.metadata.create_all(engine)
+    session = Session(engine)
+    for state in session.query(State).order_by(State.id).all():
         print("{}: {}".format(state.id, state.name))
-
-    # Close the session
     session.close()
