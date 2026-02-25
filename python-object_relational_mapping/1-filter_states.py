@@ -3,9 +3,9 @@
 Lists all states from the specified MySQL database where the name
 starts with uppercase 'N'.
 
-This script connects to a MySQL server running on localhost at port 3306,
-retrieves filtered rows from the states table ordered by id in ascending
-order, and prints them to standard output.
+The script connects to a MySQL server running on localhost at port 3306,
+retrieves rows from the states table filtered by names starting with
+uppercase 'N', ordered by id in ascending order, and prints them.
 """
 
 import MySQLdb
@@ -32,7 +32,9 @@ def main():
 
     cursor = db.cursor()
     cursor.execute(
-        "SELECT * FROM states WHERE name LIKE 'N%' ORDER BY id ASC"
+        "SELECT * FROM states "
+        "WHERE BINARY name LIKE 'N%' "
+        "ORDER BY id ASC"
     )
 
     rows = cursor.fetchall()
@@ -45,3 +47,4 @@ def main():
 
 if __name__ == "__main__":
     main()
+
