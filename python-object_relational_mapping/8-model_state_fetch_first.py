@@ -6,6 +6,7 @@ from sqlalchemy.orm import Session
 from model_state import State
 
 if __name__ == "__main__":
+    # الاتصال بقاعدة البيانات
     engine = create_engine(
         'mysql+mysqldb://{}:{}@localhost/{}'.format(sys.argv[1],
                                                     sys.argv[2],
@@ -15,11 +16,13 @@ if __name__ == "__main__":
 
     session = Session(engine)
 
+    # جلب أول عنصر فقط
     first_state = session.query(State).order_by(State.id).first()
 
-    if first_state:
-        print("{}: {}".format(first_state.id, first_state.name))
-    else:
+    if first_state is None:
         print("Nothing")
+    else:
+        print("{}: {}".format(first_state.id, first_state.name))
 
     session.close()
+    
