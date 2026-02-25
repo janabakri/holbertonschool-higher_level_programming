@@ -1,40 +1,28 @@
 #!/usr/bin/python3
-"""
-Lists all states from the database hbtn_0e_0_usa
-Arguments: mysql username, mysql password, database name
-Results sorted in ascending order by states.id
-"""
+"""Lists all states with a space at the end of each line"""
 
 import MySQLdb
 import sys
 
-
 if __name__ == "__main__":
-    # Get command line arguments
     username = sys.argv[1]
     password = sys.argv[2]
     database = sys.argv[3]
-
-    # Connect to MySQL server
+    
     db = MySQLdb.connect(
         host="localhost",
         port=3306,
         user=username,
         passwd=password,
-        db=database,
-        charset="utf8"
+        db=database
     )
-
-    # Create cursor and execute query
-    cur = db.cursor()
-    cur.execute("SELECT * FROM states ORDER BY id ASC")
-
-    # Fetch and print results
-    rows = cur.fetchall()
-    for row in rows:
-        print(row)
-
-    # Close cursor and database connection
-    cur.close()
-    db.close()
     
+    cursor = db.cursor()
+    cursor.execute("SELECT * FROM states ORDER BY id ASC")
+    
+    for row in cursor.fetchall():
+        # Add a space at the end of the line
+        print("({}, '{}') ".format(row[0], row[1]))  # Notice the space before the closing parenthesis
+        
+    cursor.close()
+    db.close()
