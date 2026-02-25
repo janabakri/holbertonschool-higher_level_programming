@@ -1,11 +1,20 @@
 #!/usr/bin/python3
-"""Lists all states from the database hbtn_0e_0_usa"""
+"""
+Lists all states from the specified MySQL database.
+
+This script connects to a MySQL server running on localhost at port 3306,
+retrieves all rows from the states table ordered by id in ascending order,
+and prints them to standard output.
+"""
 
 import MySQLdb
 import sys
 
 
-if __name__ == "__main__":
+def main():
+    """
+    Connects to the MySQL database and prints all states ordered by id.
+    """
     username = sys.argv[1]
     password = sys.argv[2]
     database = sys.argv[3]
@@ -15,16 +24,20 @@ if __name__ == "__main__":
         port=3306,
         user=username,
         passwd=password,
-        db=database
+        db=database,
+        charset="utf8"
     )
 
-    cur = db.cursor()
-    cur.execute("SELECT * FROM states ORDER BY id ASC")
+    cursor = db.cursor()
+    cursor.execute("SELECT * FROM states ORDER BY id ASC")
 
-    for row in cur.fetchall():
+    rows = cursor.fetchall()
+    for row in rows:
         print(row)
 
-    cur.close()
+    cursor.close()
     db.close()
 
 
+if __name__ == "__main__":
+    main()
