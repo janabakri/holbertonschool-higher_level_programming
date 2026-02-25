@@ -1,21 +1,22 @@
 #!/usr/bin/python3
 """
-Displays all states from the database hbtn_0e_0_usa
-where the name matches the argument given by the user.
-
-Connects to a MySQL server on localhost at port 3306,
-retrieves matching rows from the states table ordered by id,
-and prints them.
-
-This version is safe from SQL injection.
+Displays all values in the states table of a given database
+where name matches the provided argument (safe from SQL injection).
 """
 
-import MySQLdb
 import sys
+import MySQLdb
 
 
-if __name__ == "__main__":
-    username, password, database, state_name = sys.argv[1:5]
+def main():
+    """
+    Connects to a MySQL database and prints states
+    matching the provided name argument.
+    """
+    username = sys.argv[1]
+    password = sys.argv[2]
+    database = sys.argv[3]
+    state_name = sys.argv[4]
 
     db = MySQLdb.connect(
         host="localhost",
@@ -28,12 +29,17 @@ if __name__ == "__main__":
 
     cursor = db.cursor()
 
-    # Safe query using parameterized placeholder
     query = "SELECT * FROM states WHERE name = %s ORDER BY id ASC"
     cursor.execute(query, (state_name,))
 
-    for row in cursor.fetchall():
+    rows = cursor.fetchall()
+
+    for row in rows:
         print(row)
 
     cursor.close()
     db.close()
+
+
+if __name__ == "__main__":
+    main()
