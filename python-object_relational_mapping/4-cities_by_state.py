@@ -6,10 +6,8 @@ Script that lists all cities from the database hbtn_0e_4_usa
 import MySQLdb
 import sys
 
-def list_cities():
-    """
-    Lists all cities from the database with their corresponding state names
-    """
+if __name__ == "__main__":
+    # Get command line arguments
     mysql_username = sys.argv[1]
     mysql_password = sys.argv[2]
     database_name = sys.argv[3]
@@ -24,13 +22,7 @@ def list_cities():
 
     cursor = db.cursor()
 
-    query = """
-        SELECT cities.id, cities.name, states.name
-        FROM cities
-        JOIN states ON cities.state_id = states.id
-        ORDER BY cities.id ASC
-    """
-    cursor.execute(query)
+    cursor.execute("SELECT cities.id, cities.name, states.name FROM cities JOIN states ON cities.state_id = states.id ORDER BY cities.id ASC")
 
     results = cursor.fetchall()
 
@@ -39,6 +31,3 @@ def list_cities():
 
     cursor.close()
     db.close()
-
-if __name__ == "__main__":
-    list_cities()
