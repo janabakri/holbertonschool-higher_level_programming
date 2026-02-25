@@ -1,39 +1,25 @@
 #!/usr/bin/python3
-"""
-Lists all cities from the database hbtn_0e_4_usa
-with their corresponding state name.
-
-Connects to a MySQL server on localhost at port 3306,
-retrieves all cities ordered by cities.id using a single query,
-and prints them as (id, city_name, state_name).
-"""
-
+"""Script that lists all cities from the database hbtn_0e_4_usa"""
 import MySQLdb
 import sys
 
-if __name__ == "__main__":
-    username, password, database = sys.argv[1:4]
 
+if __name__ == "__main__":
     db = MySQLdb.connect(
         host="localhost",
         port=3306,
-        user=username,
-        passwd=password,
-        db=database,
-        charset="utf8"
+        user=sys.argv[1],
+        passwd=sys.argv[2],
+        db=sys.argv[3]
     )
-
-    cursor = db.cursor()
-
-    query = ("SELECT cities.id, cities.name, states.name "
-             "FROM cities "
-             "JOIN states ON cities.state_id = states.id "
-             "ORDER BY cities.id ASC")
-    cursor.execute(query)
-
-    for row in cursor.fetchall():
+    cur = db.cursor()
+    cur.execute("""
+        SELECT cities.id, cities.name, states.name
+        FROM cities
+        JOIN states ON cities.state_id = states.id
+        ORDER BY cities.id ASC
+    """)
+    for row in cur.fetchall():
         print(row)
-
-    cursor.close()
+    cur.close()
     db.close()
-
