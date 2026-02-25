@@ -1,11 +1,9 @@
 #!/usr/bin/python3
 """
-Lists all states from the database where the name
-starts with uppercase 'N'.
+Lists all states from the database where the name starts with uppercase 'N'.
 
-Connects to a MySQL server on localhost at port 3306,
-retrieves matching rows from the states table ordered by id,
-and prints them.
+Connects to a MySQL server on localhost at port 3306, retrieves matching rows
+from the states table ordered by id in ascending order, and prints them.
 """
 
 import MySQLdb
@@ -23,9 +21,7 @@ if __name__ == "__main__":
     )
 
     cursor = db.cursor()
-    cursor.execute(
-        "SELECT * FROM states WHERE name LIKE 'N%' ORDER BY id ASC"
-    )
+    cursor.execute("SELECT * FROM states WHERE name LIKE 'N%' ORDER BY id ASC")
 
     for row in cursor.fetchall():
         print(row)
