@@ -1,6 +1,16 @@
 #!/usr/bin/python3
 """
 Lists all State objects from the database hbtn_0e_6_usa
+
+This script connects to a MySQL database using SQLAlchemy,
+retrieves all State objects from the database,
+and displays them sorted by id in ascending order.
+
+Usage:
+    ./7-model_state_fetch_all.py <mysql username> <mysql password> <database name>
+
+Example:
+    ./7-model_state_fetch_all.py root root hbtn_0e_6_usa
 """
 
 import sys
@@ -32,10 +42,9 @@ if __name__ == "__main__":
     # Query all State objects sorted by id in ascending order
     states = session.query(State).order_by(State.id).all()
 
-    # Display results
+    # Display results in the required format
     for state in states:
         print("{}: {}".format(state.id, state.name))
 
     # Close the session
     session.close()
-
