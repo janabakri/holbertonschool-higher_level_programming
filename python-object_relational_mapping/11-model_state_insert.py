@@ -3,37 +3,24 @@
 import sys
 from sqlalchemy import create_engine
 from sqlalchemy.orm import sessionmaker
-from model_state import Base, State
+from model_state import State
 
 if __name__ == "__main__":
-    # Command line args
     username = sys.argv[1]
     password = sys.argv[2]
     database = sys.argv[3]
 
-    # Connect to MySQL
     engine = create_engine(
-        'mysql+mysqldb://{}:{}@localhost:3306/{}'.format(
-            username, password, database
-        ),
+        'mysql+mysqldb://{}:{}@localhost:3306/{}'.format(username, password, database),
         pool_pre_ping=True
     )
 
-    # Create a configured "Session" class
     Session = sessionmaker(bind=engine)
-
-    # Create a Session
     session = Session()
 
-    # Create new State
     new_state = State(name="Louisiana")
     session.add(new_state)
-
-    # Commit to DB
     session.commit()
 
-    # Print the new state's id
     print("{}".format(new_state.id))
-
-    # Close session
     session.close()
