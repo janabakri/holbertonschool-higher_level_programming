@@ -1,6 +1,5 @@
 #!/usr/bin/python3
-"""Script that takes in arguments and displays all values in the states
-table of hbtn_0e_0_usa where name matches the argument safe from injection"""
+"""Safe script from SQL injection"""
 import MySQLdb
 import sys
 
@@ -21,7 +20,9 @@ if __name__ == "__main__":
         (sys.argv[4],)
     )
 
-    for row in cur.fetchall():
+    rows = cur.fetchall()
+
+    for row in rows:
         print(row)
 
     cur.close()
