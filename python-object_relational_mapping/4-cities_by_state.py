@@ -22,11 +22,11 @@ if __name__ == "__main__":
         ORDER BY cities.id ASC
     """
     cursor.execute(query)
-
     rows = cursor.fetchall()
 
-    for row in rows:
-        print(row)
+    for city_id, city_name, state_name in rows:
+        print("({}, '{}', '{}')".format(city_id, city_name, state_name))
 
     cursor.close()
     db.close()
+    
