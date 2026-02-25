@@ -1,51 +1,28 @@
 #!/usr/bin/python3
-"""
-Lists all states from the database hbtn_0e_0_usa
-
-This script connects to a MySQL database running on localhost at port 3306,
-retrieves all records from the states table,
-and displays them sorted in ascending order by states.id.
-
-Usage:
-    ./0-select_states.py <mysql username> <mysql password> <database name>
-
-Example:
-    ./0-select_states.py root root hbtn_0e_0_usa
-"""
+"""Lists all states from the database hbtn_0e_0_usa"""
 
 import MySQLdb
 import sys
 
-
 if __name__ == "__main__":
-    # Get MySQL credentials from command line arguments
-    mysql_username = sys.argv[1]
-    mysql_password = sys.argv[2]
-    database_name = sys.argv[3]
+    username = sys.argv[1]
+    password = sys.argv[2]
+    database = sys.argv[3]
 
-    # Connect to MySQL server running on localhost at port 3306
     db = MySQLdb.connect(
         host="localhost",
         port=3306,
-        user=mysql_username,
-        passwd=mysql_password,
-        db=database_name
+        user=username,
+        passwd=password,
+        db=database
     )
 
-    # Create a cursor object to execute SQL queries
-    cursor = db.cursor()
+    cur = db.cursor()
+    cur.execute("SELECT * FROM states ORDER BY id ASC")
 
-    # Execute query to get all states sorted by id in ascending order
-    cursor.execute("SELECT * FROM states ORDER BY id ASC")
-
-    # Fetch all rows from the executed query
-    rows = cursor.fetchall()
-
-    # Display each row as a tuple
-    for row in rows:
+    for row in cur.fetchall():
         print(row)
 
-    # Close the cursor and database connection
-    cursor.close()
+    cur.close()
     db.close()
 
