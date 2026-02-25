@@ -1,11 +1,21 @@
 #!/usr/bin/python3
 """
 Lists all states with a name starting with N (upper N) from the database hbtn_0e_0_usa
-Results are sorted in ascending order by states.id
+
+This script connects to a MySQL database running on localhost at port 3306,
+retrieves all records from the states table where the name starts with 'N',
+and displays them sorted in ascending order by states.id.
+
+Usage:
+    ./1-filter_states.py <mysql username> <mysql password> <database name>
+
+Example:
+    ./1-filter_states.py root root hbtn_0e_0_usa
 """
 
 import MySQLdb
 import sys
+
 
 if __name__ == "__main__":
     # Get MySQL credentials from command line arguments
