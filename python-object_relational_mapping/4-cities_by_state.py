@@ -19,8 +19,14 @@ if __name__ == "__main__":
         ORDER BY cities.id ASC
     """)
     rows = cursor.fetchall()
+    
+    # طباعة النتائج بدون سطر جديد في النهاية
+    output = []
     for row in rows:
-        # طباعة بدون المسافات بعد الفواصل
-        print(f"({row[0]},'{row[1]}','{row[2]}')")
+        output.append(f"({row[0]}, '{row[1]}', '{row[2]}')")
+    
+    if output:
+        print("\n".join(output))
+    
     cursor.close()
     db.close()
