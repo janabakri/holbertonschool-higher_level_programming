@@ -31,7 +31,8 @@ if __name__ == "__main__":
              "ORDER BY cities.id ASC")
     cursor.execute(query)
 
-    for row in cursor.fetchall():
+    rows = cursor.fetchall()
+    for row in rows:
         print(row)
 
     cursor.close()
