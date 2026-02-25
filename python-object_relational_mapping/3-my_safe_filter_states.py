@@ -1,7 +1,9 @@
 #!/usr/bin/python3
-"""Script that is safe from MySQL injections"""
+"""Script that takes in arguments and displays all values in the states
+table of hbtn_0e_0_usa where name matches the argument safe from injection"""
 import MySQLdb
 import sys
+
 
 if __name__ == "__main__":
     db = MySQLdb.connect(
@@ -11,11 +13,12 @@ if __name__ == "__main__":
         passwd=sys.argv[2],
         db=sys.argv[3]
     )
-    cursor = db.cursor()
-    query = "SELECT * FROM states WHERE name = %s ORDER BY id ASC"
-    cursor.execute(query, (sys.argv[4],))
-    rows = cursor.fetchall()
-    for row in rows:
+    cur = db.cursor()
+    cur.execute(
+        "SELECT * FROM states WHERE name = %s ORDER BY id ASC",
+        (sys.argv[4],)
+    )
+    for row in cur.fetchall():
         print(row)
-    cursor.close()
+    cur.close()
     db.close()
