@@ -1,5 +1,5 @@
 #!/usr/bin/python3
-"""Lists states safely from SQL injection."""
+"""Lists states matching the argument (safe from SQL injection)."""
 import MySQLdb
 import sys
 
@@ -17,7 +17,6 @@ if __name__ == "__main__":
     cursor = db.cursor()
     query = "SELECT * FROM states WHERE name = %s ORDER BY id ASC"
     cursor.execute(query, (sys.argv[4],))
-
     rows = cursor.fetchall()
 
     for row in rows:
