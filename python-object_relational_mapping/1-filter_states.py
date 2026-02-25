@@ -3,7 +3,7 @@
 Lists all states from the specified MySQL database where the name
 starts with uppercase 'N'.
 
-The script connects to a MySQL server running on localhost at port 3306,
+This script connects to a MySQL server running on localhost at port 3306,
 retrieves rows from the states table filtered by names starting with
 uppercase 'N', ordered by id in ascending order, and prints them.
 """
@@ -42,6 +42,6 @@ def main():
     cursor.close()
     db.close()
 
+
 if __name__ == "__main__":
     main()
-
