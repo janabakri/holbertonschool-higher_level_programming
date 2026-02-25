@@ -1,8 +1,9 @@
 #!/usr/bin/python3
 """
 Lists all states from the database hbtn_0e_0_usa
-Usage: ./0-select_states.py <mysql username> <mysql password> <database name>
-Results are sorted in ascending order by states.id
+
+This script connects to a MySQL database, retrieves all records from the states table,
+and displays them sorted in ascending order by states.id.
 """
 
 import MySQLdb
@@ -13,7 +14,7 @@ if __name__ == "__main__":
     mysql_username = sys.argv[1]
     mysql_password = sys.argv[2]
     database_name = sys.argv[3]
-    
+
     # Connect to MySQL server running on localhost at port 3306
     db = MySQLdb.connect(
         host="localhost",
@@ -22,20 +23,20 @@ if __name__ == "__main__":
         passwd=mysql_password,
         db=database_name
     )
-    
+
     # Create a cursor object to execute SQL queries
     cursor = db.cursor()
-    
+
     # Execute query to get all states sorted by id in ascending order
     cursor.execute("SELECT * FROM states ORDER BY id ASC")
-    
+
     # Fetch all rows from the executed query
     rows = cursor.fetchall()
-    
+
     # Display each row as a tuple
     for row in rows:
         print(row)
-    
+
     # Close the cursor and database connection
     cursor.close()
     db.close()
