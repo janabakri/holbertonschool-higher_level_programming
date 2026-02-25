@@ -20,6 +20,7 @@ if __name__ == "__main__":
     """)
     rows = cursor.fetchall()
     for row in rows:
-        print(row)
+        # طباعة بدون المسافات بعد الفواصل
+        print(f"({row[0]},'{row[1]}','{row[2]}')")
     cursor.close()
     db.close()
