@@ -19,14 +19,7 @@ if __name__ == "__main__":
         ORDER BY cities.id ASC
     """)
     rows = cursor.fetchall()
-    
-    # طباعة النتائج بدون سطر جديد في النهاية
-    output = []
     for row in rows:
-        output.append(f"({row[0]}, '{row[1]}', '{row[2]}')")
-    
-    if output:
-        print("\n".join(output))
-    
+        print(row)
     cursor.close()
     db.close()
